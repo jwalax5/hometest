@@ -18,12 +18,12 @@ java -jar build/libs/hometest-0.0.1-SNAPSHOT.jar
 ### Application started!
 
 ## Api endpoint
-- ###Get history of wallet balance
+- ### Get history of wallet balance
 ```
 GET     localhost:8080/transactions 
 ```
 
-- ###Save record
+- ### Save record
 ```
 POST    localhost:8080/transactions 
 ```

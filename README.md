@@ -22,10 +22,24 @@ java -jar build/libs/hometest-0.0.1-SNAPSHOT.jar
 ```
 GET     localhost:8080/transactions 
 ```
+request body
+```
+{
+    "startDatetime": "2011-10-08T21:00:00+00:00",
+    "endDatetime": "2011-10-08T23:00:00+00:00"
+}
+```
 
 - ### Save record
 ```
 POST    localhost:8080/transactions 
+```
+request body
+```
+{
+    "amount": 12,
+    "transactionTime": "2011-10-08T22:39:01+00:00"
+}
 ```
 **request param field same as pdf*
 

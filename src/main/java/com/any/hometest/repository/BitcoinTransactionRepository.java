@@ -15,6 +15,7 @@ public interface BitcoinTransactionRepository extends CrudRepository<BitcoinTran
             "FROM bitcoin_transaction as bt " +
             "GROUP BY FORMATDATETIME(bt.transaction_time,'yyyy-MM-dd HH:00:00')) as subquery " +
             "WHERE subquery.tt >= ?1 " +
-            "AND subquery.tt <= ?2 ", nativeQuery = true)
+            "AND subquery.tt <= ?2 " +
+            "ORDER by subquery.tt ASC", nativeQuery = true)
     List<Object[]> findHistoryTransaction(LocalDateTime transactionTimeStart, LocalDateTime transactionTimeEnd);
 }

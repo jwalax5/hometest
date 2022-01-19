@@ -10,12 +10,11 @@ import java.util.List;
 
 @Repository
 public interface BitcoinTransactionRepository extends CrudRepository<BitcoinTransactionEntity, Long> {
-    @Query(value = "SELECT subquery.total as amount, subquery.tt as transaction_time  " +
-            "FROM (SELECT SUM(amount) as total, FORMATDATETIME(bt.transaction_time,'yyyy-MM-dd HH:00:00') as tt " +
+    @Query(value = "SELECT SUM(bt.amount) as amount,  FORMATDATETIME(bt.transaction_time,'yyyy-MM-dd HH:00:00') as transaction_time  " +
             "FROM bitcoin_transaction as bt " +
-            "GROUP BY FORMATDATETIME(bt.transaction_time,'yyyy-MM-dd HH:00:00')) as subquery " +
-            "WHERE subquery.tt >= ?1 " +
-            "AND subquery.tt <= ?2 " +
-            "ORDER by subquery.tt ASC", nativeQuery = true)
+            "WHERE transaction_time >= ?1 " +
+            "AND transaction_time <= ?2 " +
+            "GROUP BY transaction_time " +
+            "ORDER by transaction_time ASC", nativeQuery = true)
     List<Object[]> findHistoryTransaction(LocalDateTime transactionTimeStart, LocalDateTime transactionTimeEnd);
 }
